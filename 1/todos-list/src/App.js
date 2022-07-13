@@ -1,8 +1,9 @@
 import './App.css';
-import Header from "./myComponent/Header"
-import { Todo } from "./myComponent/Todo"
+import Header from "./components/Header"
+import { Todo } from "./components/Todo"
 import React, { useState } from 'react'
-import {Footer} from "./myComponent/Footer"
+import {Footer} from "./components/Footer"
+import {AddTodo} from "./components/AddTodo"
 
 function App() {
   const onDelete = (todo) => {
@@ -11,30 +12,36 @@ function App() {
       return e !== todo;
     }))
   }
+
+  const addTodo = (tittle  , desc)=>{
+    let sno;
+    if(todos.length == 0){
+      sno=0
+    }
+    else{
+      sno = todos[todos.length-1].sno + 1;
+    }
+     const myTodo = {
+      sno : sno,
+      tittle : tittle,
+      desc : desc
+     }
+     setTodos([...todos,myTodo]);
+     console.log(myTodo);
+  }
+
   const [todos, setTodos] = useState([
     {
-      sNo: 1,
-      tittle: "Goto The Market",
-      desc: "Done This Job As Soon As Possible 1"
-
-    },
-    {
-      sNo: 2,
-      tittle: "Goto The Austrailia",
-      desc: "Done This Job As Soon As Possible 2"
-
-    },
-    {
-      sNo: 3,
-      tittle: "Goto The Pakistan",
-      desc: "Done This Job As Soon As Possible 3"
-
+      sno: 0,
+      tittle: "",
+      desc: ""  
     }
   ]);
 
   return (
     <>
       <Header tittle="Rj Todo List" search={true} />
+      <AddTodo addTodo={addTodo}/>
       <Todo todos={todos} onDelete={onDelete} />
       <Footer/>
     </>
