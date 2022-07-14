@@ -2,8 +2,16 @@ import './App.css';
 import Header from "./components/Header"
 import { Todo } from "./components/Todo"
 import React, { useState } from 'react'
-import {Footer} from "./components/Footer"
-import {AddTodo} from "./components/AddTodo"
+import { Footer } from "./components/Footer"
+import { AddTodo } from "./components/AddTodo"
+import About from './components/About';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes
+} from "react-router-dom";
+
+
 
 function App() {
   const onDelete = (todo) => {
@@ -13,37 +21,44 @@ function App() {
     }))
   }
 
-  const addTodo = (tittle  , desc)=>{
+  const addTodo = (tittle, desc) => {
     let sno;
-    if(todos.length == 0){
-      sno=0
+    if (todos.length === 0) {
+      sno = 0
     }
-    else{
-      sno = todos[todos.length-1].sno + 1;
+    else {
+      sno = todos[todos.length - 1].sno + 1;
     }
-     const myTodo = {
-      sno : sno,
-      tittle : tittle,
-      desc : desc
-     }
-     setTodos([...todos,myTodo]);
-     console.log(myTodo);
+    const myTodo = {
+      sno: sno,
+      tittle: tittle,
+      desc: desc
+    }
+    setTodos([...todos, myTodo]);
+    console.log(myTodo);
   }
 
   const [todos, setTodos] = useState([
     {
       sno: 0,
       tittle: "",
-      desc: ""  
+      desc: ""
     }
   ]);
 
   return (
     <>
-      <Header tittle="Rj Todo List" search={true} />
-      <AddTodo addTodo={addTodo}/>
-      <Todo todos={todos} onDelete={onDelete} />
-      <Footer/>
+      <Router>
+        <Header tittle="Rj Todo List" search={true} />
+        <Routes>
+          <Route exact path="/" element={<> <AddTodo addTodo={addTodo} />
+        <Todo todos={todos} onDelete={onDelete} /> </>}/>
+        </Routes>
+        <Routes>
+          <Route exact path="/about" element={<About/>}/>
+        </Routes>
+        <Footer />
+      </Router>
     </>
   );
 }
