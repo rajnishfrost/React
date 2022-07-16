@@ -1,41 +1,53 @@
-import React from 'react'
-// import Web3 from 'web3'
-// import detectEthereumProvider from "@metamask/detect-provider"
-// import {useState , useEffect} from "react"
+import React from 'react';
+import NavigationBar from './components/NavigationBar';
+import GetBalance from './components/GetBalance';
+import BuyToken from './components/BuyToken';
+import CalculateTokens from './components/CalculateTokens';
+// import {useState } from "react";
+// import ICO from "./truffle/build/contracts/ICO.json";
+// import { ethers } from "ethers";
+// const contractAddress = ICO.networks['5777'].address;
+// const contractAbi = ICO.abi;
 
 
 function App() {
+  // const[value , setValue] = useState();
 
-  // const [web3Api , setWeb3Api] = useState({
-  //   provider : null,
-  //   web3 : null
-  // }); 
-  // const [account , setAccount] = useState(null);
-  // useEffect(() => {
-  //   const loadProvider = async()=>{
-  //     const provider = await detectEthereumProvider();
-  //     if(provider){
-  //       provider.request({method:"eth-requestAccounts"});
-  //       setWeb3Api({
-  //         web3: new Web3(provider),
-  //         provider
-  //       }); 
+  // async function requestAccount(){
+  //   await window.ethereum.request({method : "eth_requestAccounts"});
+  // }
+  // requestAccount();
+
+  // async function getToken() {
+  //   if (typeof window.ethereum !== "undefined") {
+  //     // const provider = new ethers.providers.JsonRpcProvider("HTTP://127.0.0.1:7545");
+  //     const provider = new ethers.providers.Web3Provider(window.ethereum)
+  //     const accc = await provider.send("eth_requestAccounts", []);
+  //     const contract = new ethers.Contract(contractAddress, contractAbi, provider);
+  //     try {
+  //       let data = await contract.getBalance(accc[0]);
+  //       data = parseInt(data);
+  //       data = data / 10 ** 18;
+  //       console.log("Token : ", data);
   //     }
-  //     else{
-  //       console.error("Please Install Metamask")
+  //     catch (err) {
+  //       console.log("Error : ", err);
   //     }
   //   }
-  //   loadProvider();
-  // }, [])
-
+  // }
+  const style = {
+    backgroundColor: "rgb(205, 245, 255)",
+    position: "absolute",
+    height: "100%",
+    width: "100%"
+  }
   return (
-    <>
-    <p>hello peter</p>
-    <button onClick={async()=>{
-      const accounts = await window.ethereum.request({method:"eth_requestAccounts",});
-      console.log(accounts);
-    }}>Click To Connect Metamask</button>
-    </>
+   <div style={style}>
+    <NavigationBar/>
+    <CalculateTokens/>
+    <GetBalance/>
+    <BuyToken/>
+   </div>
   );
 }
 

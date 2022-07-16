@@ -20,8 +20,8 @@ contract ICO {
         tokenFundsAddress = payable(msg.sender);
     }
 
-    function getBalance(address addr) public view returns (uint256) {
-        return balances[addr];
+    function getBalance(address _add) public view returns (uint256) {
+        return balances[_add];
     }
 
     function transfer(uint256 numTokens) public payable {
