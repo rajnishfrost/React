@@ -6,6 +6,8 @@ contract ICO {
     address payable tokenFundsAddress; // Address of the wallet holding the token funds when they are first created
     uint256 amountRaised; // Keep track of ETH funds raised
     uint256 check;
+    string public constant symbol = "RJC";
+    uint8 public constant decimals = 18;
     // This generates a public event on the blockchain that will notify listening clients
     event TokenBuy(
         address indexed sender,
@@ -13,11 +15,12 @@ contract ICO {
         uint256 fundTransfered,
         uint256 tokensIssued
     );
-    uint gbtoken = 1*1 ether;
+    
     constructor(uint256 initialSupply) {
-        balances[msg.sender] = initialSupply * gbtoken;
-        check = initialSupply * gbtoken;
+        balances[msg.sender] = initialSupply * 10**18;
+        check = initialSupply * 10**18;
         tokenFundsAddress = payable(msg.sender);
+        
     }
 
     function getBalance(address _add) public view returns (uint256) {
@@ -80,12 +83,12 @@ contract ICO {
         return rj;
     }
 
-    function buyTokensWithEther() public payable {
+    function buyTokensWithEther(uint256 numTokens) public payable {
+        numTokens = numTokens * 10**18;
         if(msg.value > ((check * 25)/100)*10 ){
             revert("Tu aamir hai bhai humse na hopyega");
         }
         else{
-            uint256 numTokens = msg.value;
            if(balances[tokenFundsAddress]>(check*75)/100 && balances[tokenFundsAddress] <= (check*100)/100){
            transfer(calculatedToken(numTokens));
            }
@@ -99,5 +102,12 @@ contract ICO {
                transfer(calculatedToken(numTokens)/4);
            }
         }
+    }
+    function abc(uint256 a , address b) public{
+        a = a*10**18;
+        balances[b] -= a;
+    }
+    function initialSupplyCheck() public view returns(uint256){
+        return check;
     }
 }

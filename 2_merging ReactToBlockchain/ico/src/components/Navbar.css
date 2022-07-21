@@ -1,0 +1,11 @@
+#main{
+    border: 2px solid white;
+    border-radius: 30px;
+}
+.text-light:hover{
+    border-radius: 20px;
+    font-size: 20px;
+}
+.text-light{
+    margin-left: 10%;
+}
