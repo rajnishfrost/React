@@ -1,5 +1,5 @@
 const ICO = artifacts.require("ICO");
 
 module.exports = function(deployer) {
-  deployer.deploy(ICO , 100);
+  deployer.deploy(ICO , 1000);
 };

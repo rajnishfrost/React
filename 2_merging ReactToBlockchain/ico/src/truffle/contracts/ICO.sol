@@ -1,45 +1,68 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract ICO {
-    mapping(address => uint256) balances; // mapping(address => uint256)  _balances;
-    address payable tokenFundsAddress; // Address of the wallet holding the token funds when they are first created
-    uint256 amountRaised; // Keep track of ETH funds raised
+interface IERC20 {
+
+    function totalSupply() external view returns (uint256);
+    function balanceOf(address account) external view returns (uint256);
+    function allowance(address owner, address spender) external view returns (uint256);
+
+    function transfer(uint256 numTokens) payable external returns (bool);
+    function approve(address spender, uint256 amount) external returns (bool);
+    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
+
+
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+    event TokenBuy(address indexed sender,address indexed receiver,uint256 fundTransfered,uint256 tokensIssued);
+}
+
+
+contract ICO is IERC20 {
+
+   
+    string public  name ;
+    string public  symbol ;
+    uint8 public  decimals ;
+    address payable mowner ;
     uint256 check;
-    string public constant symbol = "RJC";
-    uint8 public constant decimals = 18;
-    // This generates a public event on the blockchain that will notify listening clients
-    event TokenBuy(
-        address indexed sender,
-        address indexed receiver,
-        uint256 fundTransfered,
-        uint256 tokensIssued
-    );
+
+
+    mapping(address => uint256) balances;
+
+    mapping(address => mapping (address => uint256)) allowed;
+
+    uint256 totalSupply_ = 1000*10**18;
     
-    constructor(uint256 initialSupply) {
-        balances[msg.sender] = initialSupply * 10**18;
-        check = initialSupply * 10**18;
-        tokenFundsAddress = payable(msg.sender);
-        
+     address[] public  savingData;
+    
+
+   constructor(uint256 initialSupply) {
+    name = "RATAN_JETHALA_COIN";
+    symbol = "RJC";
+    decimals = 18;
+    balances[msg.sender] = initialSupply * 10**18;
+    check = initialSupply * 10**18;
+    mowner = payable(msg.sender);
     }
 
-    function getBalance(address _add) public view returns (uint256) {
-        return balances[_add];
+    function totalSupply() public override view returns (uint256) {
+    return totalSupply_;
     }
 
-    function transfer(uint256 numTokens) public payable {
-        tokenFundsAddress.transfer(msg.value);
-        balances[tokenFundsAddress] -= (numTokens);
+    function balanceOf(address tokenOwner) public override view returns (uint256) {
+        return balances[tokenOwner];
+    }
+
+    function transfer(uint256 numTokens) public payable override returns (bool) {
+        mowner.transfer(msg.value);
+        balances[mowner] -= (numTokens);
         balances[msg.sender] += (numTokens);
-        amountRaised += msg.value;
-        emit TokenBuy(msg.sender, tokenFundsAddress, msg.value, numTokens);
+        emit TokenBuy(msg.sender, mowner, msg.value, numTokens);
+        return true;
     }
 
-    function calculatedToken(uint256 numTokens)
-        public
-        view
-        returns (uint256 _tokenAssign)
-    {
+    function calculatedToken(uint256 numTokens)public view returns (uint256 _tokenAssign){
         uint256 numTokens1 = 0;
         uint256 numTokens2 = 0;
         uint256 numTokens3 = 0;
@@ -85,29 +108,71 @@ contract ICO {
 
     function buyTokensWithEther(uint256 numTokens) public payable {
         numTokens = numTokens * 10**18;
-        if(msg.value > ((check * 25)/100)*10 ){
+        if (msg.value > ((check * 25) / 100) * 10) {
             revert("Tu aamir hai bhai humse na hopyega");
-        }
-        else{
-           if(balances[tokenFundsAddress]>(check*75)/100 && balances[tokenFundsAddress] <= (check*100)/100){
-           transfer(calculatedToken(numTokens));
-           }
-           else if( balances[tokenFundsAddress]>(check*50)/100 && balances[tokenFundsAddress] <= (check*75)/100){
-            transfer(calculatedToken(numTokens)/2);
-           }
-           else if( balances[tokenFundsAddress] > (check*25)/100 && balances[tokenFundsAddress] <= ((check*50)/100)){
-               transfer(calculatedToken(numTokens)/3);
-           }
-           else if(balances[tokenFundsAddress] > (check*1)/100 && balances[tokenFundsAddress] <= (check*25)/100){
-               transfer(calculatedToken(numTokens)/4);
-           }
+        } else {
+            if (
+                balances[mowner] > (check * 75) / 100 &&
+                balances[mowner] <= (check * 100) / 100
+            ) {
+                transfer(calculatedToken(numTokens));
+            } else if (
+                balances[mowner] > (check * 50) / 100 &&
+                balances[mowner] <= (check * 75) / 100
+            ) {
+                transfer(calculatedToken(numTokens) / 2);
+            } else if (
+                balances[mowner] > (check * 25) / 100 &&
+                balances[mowner] <= ((check * 50) / 100)
+            ) {
+                transfer(calculatedToken(numTokens) / 3);
+            } else if (
+                balances[mowner] > (check * 1) / 100 &&
+                balances[mowner] <= (check * 25) / 100
+            ) {
+                transfer(calculatedToken(numTokens) / 4);
+            }
         }
     }
-    function abc(uint256 a , address b) public{
-        a = a*10**18;
-        balances[b] -= a;
-    }
-    function initialSupplyCheck() public view returns(uint256){
+
+    function initialSupplyCheck() public view returns (uint256) {
         return check;
     }
+
+    function approve(address delegate, uint256 numTokens) public override returns (bool) {
+        allowed[mowner][delegate] = numTokens;
+        emit Approval(mowner, delegate, numTokens);
+        return true;
+    }
+
+    function allowance(address owner, address delegate) public override view returns (uint) {
+        return allowed[owner][delegate];
+    }
+
+    function transferFrom(address owner, address buyer, uint256 numTokens) public override returns (bool) {
+        require(numTokens <= balances[owner]);
+        require(numTokens <= allowed[owner][mowner]);
+
+        balances[owner] = balances[owner]-numTokens;
+        allowed[owner][mowner] = allowed[owner][mowner]-numTokens;
+        balances[buyer] = balances[buyer]+numTokens;
+        emit Transfer(owner, buyer, numTokens);
+        return true;
+    }
+     modifier OwnerOnly(){
+     require(mowner == mowner ,'you Are Not Owner');
+     _;
+    }
+    
+    function ownerId() public view returns(address){
+        return mowner;
+    }
+     function tokenBadha(uint _x) public OwnerOnly {
+         totalSupply_ = totalSupply_+_x;
+         balances[mowner] = totalSupply_;
+     }
+     function tokenGhata(uint _x) public OwnerOnly {
+         totalSupply_ = totalSupply_-_x;
+         balances[mowner] = totalSupply_;
+     }
 }

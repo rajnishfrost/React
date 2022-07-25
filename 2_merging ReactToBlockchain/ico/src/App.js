@@ -2,7 +2,6 @@ import React from 'react';
 import NavigationBar from './components/NavigationBar';
 import TimeStamp from './components/TimeStamp';
 import BuyMainDiv from './components/BuyMainDiv';
-import Timer from './components/Timer';
 
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
     <hr style={{color:"green" , height : "5px"}} />
     <br />
     <hr style={{color:"red" , height : "5px"}} />
-    {<Timer/>}
    </div>
   );
 }

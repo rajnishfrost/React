@@ -17,9 +17,7 @@ export default function TimeStamp() {
 
   // The state for our timer
   const [timer, setTimer] = useState("00 : 00 : 00");
-
-  const total = Date.parse(new Date());
-  const seconds = Math.floor((total / 1000 / 60 / 60) % 24);
+  
   const getTimeRemaining = (e) => {
     const total = Date.parse(e) - Date.parse(new Date());
     const seconds = Math.floor((total / 1000) % 60);
@@ -70,7 +68,7 @@ export default function TimeStamp() {
 
     // This is where you need to adjust if
     // you entend to add more time
-    deadline.setSeconds(deadline.getSeconds() + 1000000);
+    deadline.setSeconds(deadline.getSeconds() + 3610);
     return deadline;
   };
 
@@ -102,7 +100,7 @@ export default function TimeStamp() {
         provider
       );
       try {
-        let data = await contract.getBalance(
+        let data = await contract.balanceOf(
           "0xf87b4de9A22853c38Eb4a02C72dD606e7bf3A215"
         );
         data = parseInt(data);

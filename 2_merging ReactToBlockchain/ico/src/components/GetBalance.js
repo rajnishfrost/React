@@ -19,7 +19,7 @@ function GetBalance() {
       const accc = await provider.send("eth_requestAccounts", []);
       const contract = new ethers.Contract(contractAddress, contractAbi, provider);
       try {
-        let data = await contract.getBalance(accc[0]);
+        let data = await contract.balanceOf(accc[0]);
         data = parseInt(data);
         data = data / 10 ** 18;
         setValue(data);

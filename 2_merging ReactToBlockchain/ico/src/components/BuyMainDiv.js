@@ -11,7 +11,7 @@ export default function BuyMainDiv() {
   const [items, setItems] = useState(0);
   const [value, setValue] = useState(0);
   const [ehter, setEther] = useState(0);
-  
+
   async function gettingCheckValue() {
     if (typeof window.ethereum !== "undefined") {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -41,7 +41,9 @@ export default function BuyMainDiv() {
         provider
       );
       try {
-        let data = await contract.getBalance("0xf87b4de9A22853c38Eb4a02C72dD606e7bf3A215");
+        let data = await contract.balanceOf(
+          "0xf87b4de9A22853c38Eb4a02C72dD606e7bf3A215"
+        );
         data = parseInt(data);
         data = data / 10 ** 18;
         return data;
@@ -50,8 +52,8 @@ export default function BuyMainDiv() {
       }
     }
   }
-  
-  const handleChange = async(event) => {
+
+  const handleChange = async (event) => {
     setItems(await calculatedToken(event.target.value));
     setEther(event.target.value);
   };
@@ -67,7 +69,7 @@ export default function BuyMainDiv() {
     let e_numTokens3 = 0;
     let e_numTokens4 = 0;
     let rj = 0;
-    
+
     if (a > (check * 25) / 100) {
       numTokens1 = a - (check * 25) / 100;
       e_numTokens1 = (check * 25) / 100;
@@ -99,23 +101,19 @@ export default function BuyMainDiv() {
       rj = rj + a;
     }
     if (ot > (check * 75) / 100 && ot <= (check * 100) / 100) {
-        return (rj);
+      return rj;
+    } else if (ot > (check * 50) / 100 && ot <= (check * 75) / 100) {
+      return (rj = rj / 2);
+    } else if (ot > (check * 25) / 100 && ot <= (check * 50) / 100) {
+      return (rj = rj / 3);
+    } else if (ot > (check * 1) / 100 && ot <= (check * 25) / 100) {
+      return (rj = rj / 4);
     }
-    else if ( ot > (check * 50) / 100 && ot <= (check * 75) / 100) {
-       return (rj=rj/2);
-    }
-    else if (ot > (check * 25) / 100 && ot <= (check * 50) / 100) {
-      return (rj=rj/3);
-    }
-    else if ( ot > (check * 1) / 100 && ot <= (check * 25) / 100) {
-     return (rj=rj/4);
-    }
-    
   }
-    async function abc(){
-      setValue(await calculatedToken(1));
-    }
-    abc();
+  async function abc() {
+    setValue(await calculatedToken(1));
+  }
+  abc();
   return (
     <div
       style={{
@@ -146,7 +144,7 @@ export default function BuyMainDiv() {
         }}
       />
       <p style={{ color: "white", marginLeft: "50%", marginTop: "3%" }}>
-        1 Ether = {value} RJC  Tokens
+        1 Ether = {value} RJC Tokens
       </p>
       <input
         type="number"
