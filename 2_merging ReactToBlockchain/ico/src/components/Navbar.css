@@ -3,9 +3,6 @@
     border-radius: 30px;
 }
 .text-light:hover{
-    border-radius: 20px;
-    font-size: 20px;
-}
-.text-light{
-    margin-left: 10%;
+    border-radius: 10px;
+    border: 2px solid wheat;
 }

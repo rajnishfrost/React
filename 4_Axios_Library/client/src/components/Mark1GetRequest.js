@@ -1,4 +1,4 @@
-import axios from "axios";
+  import axios from "axios";
 import React from "react";
 
 const baseURL = "https://jsonplaceholder.typicode.com/posts/1";//get request

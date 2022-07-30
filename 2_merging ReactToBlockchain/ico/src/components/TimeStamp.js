@@ -15,14 +15,68 @@ export default function TimeStamp() {
   // stop it when needed
   const Ref = useRef(null);
 
+  let date = new Date();
+  let cDays = date.getDate();
+  let cHours = date.getHours();
+  let cMinutes = date.getMinutes();
+  let cSeconds = date.getSeconds();
+  let totalSeconds;
+  let fDays = 30;
+  let fHours = 12;
+  let fMinutes = 0;
+  let fSeconds = 0;
+
+  if (fHours > cHours && fDays > cDays) {
+    fDays = fDays - cDays;
+    fHours = fHours - cHours;
+    fMinutes = fMinutes - cMinutes;
+    fSeconds = fSeconds - cSeconds;
+    totalSeconds = fHours * 3600 + fMinutes * 60 + fSeconds;
+  } else if (fHours < cHours && fDays <= cDays) {
+    fDays = 0;
+    fHours = 0;
+    fMinutes = 0;
+    fSeconds = 0;
+    totalSeconds = 0;
+    console.log("hello peter");
+  }
+  else if (fHours > cHours && cDays === fDays) {
+    fDays = fDays - cDays;
+    fHours = fHours - cHours + 24;
+    fMinutes = fMinutes - cMinutes + 60;
+    fSeconds = fSeconds - cSeconds + 60;
+    totalSeconds = fHours * 3600 + fMinutes * 60 + fSeconds;
+  } else if (fHours <= cHours && fDays > cDays) {
+    if (fDays === cDays + 1) {
+      fDays = fDays - cDays - 1;
+      fHours = fHours - cHours + 24;
+      fMinutes = fMinutes - cMinutes;
+      fSeconds = fSeconds - cSeconds;
+      totalSeconds = fHours * 3600 + fMinutes * 60 + fSeconds;
+    } else {
+      fDays = fDays - cDays - 1;
+      fHours = fHours - cHours + 24;
+      fMinutes = fMinutes - cMinutes;
+      fSeconds = fSeconds - cSeconds;
+      totalSeconds = fHours * 3600 + fMinutes * 60 + fSeconds;
+    }
+  } else if (fHours < cHours && cDays === fDays) {
+    fDays = fDays - cDays;
+    fHours = fHours - cHours + 24;
+    fMinutes = fMinutes - cMinutes + 60;
+    fSeconds = fSeconds - cSeconds + 60;
+    totalSeconds = fHours * 3600 + fMinutes * 60 + fSeconds;
+  }
+
   // The state for our timer
   const [timer, setTimer] = useState("00 : 00 : 00");
-  
+
   const getTimeRemaining = (e) => {
     const total = Date.parse(e) - Date.parse(new Date());
     const seconds = Math.floor((total / 1000) % 60);
     const minutes = Math.floor((total / 1000 / 60) % 60);
     const hours = Math.floor((total / 1000 / 60 / 60) % 24);
+
     return {
       total,
       hours,
@@ -39,10 +93,10 @@ export default function TimeStamp() {
       // add '0' at the beginning of the variable
       setTimer(
         (hours > 9 ? hours : "0" + hours) +
-          " : " +
-          (minutes > 9 ? minutes : "0" + minutes) +
-          " : " +
-          (seconds > 9 ? seconds : "0" + seconds)
+        " : " +
+        (minutes > 9 ? minutes : "0" + minutes) +
+        " : " +
+        (seconds > 9 ? seconds : "0" + seconds)
       );
     }
   };
@@ -51,7 +105,7 @@ export default function TimeStamp() {
     // If you adjust it you should also need to
     // adjust the Endtime formula we are about
     // to code next
-    setTimer("00:00:10");
+    setTimer("00:00:00");
 
     // If you try to remove this line the
     // updating of timer Variable will be
@@ -68,7 +122,8 @@ export default function TimeStamp() {
 
     // This is where you need to adjust if
     // you entend to add more time
-    deadline.setSeconds(deadline.getSeconds() + 3610);
+
+    deadline.setSeconds(deadline.getSeconds() + totalSeconds);
     return deadline;
   };
 
@@ -111,15 +166,15 @@ export default function TimeStamp() {
       }
     }
   }
-  gettingOwnerToken();
+  // gettingOwnerToken();
   return (
     <>
       <div
         style={{
           height: "500px",
           width: "400px",
-          marginLeft: "10%",
-          marginTop: "5%",
+          marginLeft: "27%",
+          marginTop: "-36%",
         }}
       >
         <img
@@ -140,7 +195,9 @@ export default function TimeStamp() {
           Sell Will Active After
         </p>
         <div style={{ marginLeft: "13%" }}>
-          <h1 style={{ color: "white" }}>08 : {timer}</h1>
+          <h1 style={{ color: "white" }}>
+            0{fDays} : {timer}
+          </h1>
           <p style={{ color: "white" }}>
             {" "}
             &nbsp; Days &nbsp; &nbsp; &nbsp; &nbsp; Hours &nbsp; &nbsp; &nbsp;
@@ -163,9 +220,9 @@ export default function TimeStamp() {
         >
           Active now
         </button>
-        <h5 style={{ color: "white", marginLeft: "25%", marginTop: "2%" }}>
+        {/* <h5 style={{ color: "white", marginLeft: "25%", marginTop: "2%" }}>
           TOKEN LEFT {items}
-        </h5>
+        </h5> */}
       </div>
     </>
   );

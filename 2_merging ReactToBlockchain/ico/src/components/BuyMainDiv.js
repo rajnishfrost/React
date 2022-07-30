@@ -110,17 +110,17 @@ export default function BuyMainDiv() {
       return (rj = rj / 4);
     }
   }
-  async function abc() {
-    setValue(await calculatedToken(1));
-  }
-  abc();
+  // async function abc() {
+  //   setValue(await calculatedToken(1));
+  // }
+  // abc();
   return (
     <div
       style={{
         height: "650px",
         width: "450px",
-        marginLeft: "65%",
-        marginTop: "-30%",
+        marginLeft: "68%",
+        marginTop: "-26%",
         border: "2px solid white",
         borderRadius: "100px",
       }}
@@ -143,9 +143,9 @@ export default function BuyMainDiv() {
           borderRadius: "10px",
         }}
       />
-      <p style={{ color: "white", marginLeft: "50%", marginTop: "3%" }}>
+      {/* <p style={{ color: "white", marginLeft: "50%", marginTop: "3%" }}>
         1 Ether = {value} RJC Tokens
-      </p>
+      </p> */}
       <input
         type="number"
         placeholder={items.toString()}
@@ -155,7 +155,7 @@ export default function BuyMainDiv() {
           width: "70%",
           color: "black",
           marginLeft: "14%",
-          marginTop: "0%",
+          marginTop: "2%",
           border: "3px solid white",
           borderRadius: "10px",
         }}

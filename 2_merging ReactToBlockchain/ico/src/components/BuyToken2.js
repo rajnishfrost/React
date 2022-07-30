@@ -6,6 +6,7 @@ import { ethers } from "ethers";
 const contractAddress = ICO.networks["5777"].address;
 const contractAbi = ICO.abi;
 
+
 export default function BuyToken2(props) {
   let value = props.etherValue;
 
@@ -33,18 +34,20 @@ export default function BuyToken2(props) {
               I agree to the Terms of Service (including purchaser's citizenship
               and/or residency restrictions) and Privacy Policy
             </li>
+            <br />
             <li style={{ color: "white" }}>
               I am not a citizen and/or resident of FATF blacklist countries
               and/or countries not recognized by the EU.
             </li>
+            <br />
             <li style={{ color: "white" }}>
-              I am not a citizen/natural or a resident of the USA, a person or
-              legal entity under the U.S. jurisdiction.
+              I am not a citizen/natural or a resident of the INDIA, a person or
+              legal entity under the IN. jurisdiction.
             </li>
           </ul>
           <Button
-          className="btn-success"
-          onClick={buyTokensWithEther}
+            className="btn-success"
+            onClick={buyTokensWithEther}
             style={{
               height: "7%",
               width: "70%",
@@ -53,7 +56,7 @@ export default function BuyToken2(props) {
               marginTop: "0%",
               border: "3px solid white",
               borderRadius: "10px",
-              backgroundColor : "green"
+              backgroundColor: "green",
             }}
           >
             Buy
