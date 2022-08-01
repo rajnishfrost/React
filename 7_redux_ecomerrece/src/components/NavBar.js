@@ -5,13 +5,13 @@ export default function NavBar() {
   const myState = useSelector((state)=> state.changeTheNumber);
 
   return (
-    <div style={{height:"5%" , width :"94%" , border:"2px solid black" , margin : "1%"}}>
-        <ul style={{display:"flex"}}>
-            <li style={{marginLeft:"5%" }}>Home</li>
-            <li style={{marginLeft:"5%" }}>Mobile</li>
-            <li style={{marginLeft:"5%" }}>Laptop</li>
-            <li style={{marginLeft:"5%" }}>Clothings</li>
-            <li style={{marginLeft:"60%" , textDecoration : "none"}}>Cart = {myState}</li>
+    <div style={{height:"5%" , width :"94%" , border:"2px solid black" , margin : "1%" , borderRadius : "10px"}}>
+        <ul style={{display:"flex" }}>
+            <li style={{marginLeft:"5%" , listStyle : "none"}}>Home</li>
+            <li style={{marginLeft:"5%" , listStyle : "none"}}>Mobile</li>
+            <li style={{marginLeft:"5%" , listStyle : "none"}}>Laptop</li>
+            <li style={{marginLeft:"5%" , listStyle : "none"}}>Clothings</li>
+            <li style={{marginLeft:"65em" , listStyle: "none"}}>Cart = {myState}</li>
         </ul>
     </div>
   )
