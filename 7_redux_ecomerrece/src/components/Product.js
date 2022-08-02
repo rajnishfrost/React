@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch} from "react-redux";
 import {incNum} from "../actions/index";
+import store from "../store"
 
 export default function Product() {
   const [product, setProduct] = useState([]);
@@ -13,8 +14,12 @@ export default function Product() {
       setProduct(data);
     };
     fetchProducts();
+
   }, []);
-   
+function abc(){
+  let a = store.getState();
+  console.log(a);
+}
   return (
     <div  style={{ height : "100%" , width : "100%" , display : "flex" , flexWrap : "wrap" }}>
       {product && product.map((data , index) => {
@@ -31,6 +36,7 @@ export default function Product() {
               Price {data.price} ETH
             </p>
             <button style={{ marginLeft: "40%" }} onClick={()=>dispatch(incNum())}>Add To Cart</button>
+            <button onClick={abc}>store</button>
             <p>{data.id} .</p>
           </div>
         );
