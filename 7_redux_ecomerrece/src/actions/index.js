@@ -5,3 +5,11 @@ export const incNum = () => {
 export const decNum = () => {
   return { type: "Decrement" };
 };
+
+export const savingData = (data) => {
+ 
+  return {
+    type : "savingData" ,
+    data : data
+  }
+}

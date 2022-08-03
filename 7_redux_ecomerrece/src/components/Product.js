@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch} from "react-redux";
-import {incNum} from "../actions/index";
+import {savingData} from "../actions/index";
 import store from "../store"
 
 export default function Product() {
@@ -35,7 +35,7 @@ function abc(){
             <p style={{ marginLeft: "40%" }}>
               Price {data.price} ETH
             </p>
-            <button style={{ marginLeft: "40%" }} onClick={()=>dispatch(incNum())}>Add To Cart</button>
+            <button style={{ marginLeft: "40%" }} onClick={()=>dispatch(savingData(data))}>Add To Cart</button>
             <button onClick={abc}>store</button>
             <p>{data.id} .</p>
           </div>
