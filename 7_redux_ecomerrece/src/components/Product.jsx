@@ -22,21 +22,12 @@ export default function Product() {
 // }
   return (
     <div  style={{ height : "100%" , width : "100%" , display : "flex" , flexWrap : "wrap" }}>
-      {product && product.map((data , index) => {
+      {
+      product && product.map((data , index) => {
         return (
-          <div key={index}
-            style={{border : "solid 2px black" , height: "350px", width: "350px" , display : "block" , margin : "auto" , marginTop : "1%" , borderRadius : "100px"}} >
-            
-            <img
-              src={data.image}
-              alt=""
-              style={{ height: "250px", width: "250px" , margin : "auto" , display : "block" , marginTop : "4%"}}
-            />
-            <p ><center>
-
-              Price {data.price} ETH
-            </center>
-            </p>
+          <div key={index} style={{height: "350px", width: "350px" , display : "block" , margin : "auto" , marginTop : "1%" }} >
+            <img src={data.image} alt="noImage" style={{ height: "250px", width: "250px" , margin : "auto" , display : "block" , marginTop : "4%"}}/>
+            <p style={{textAlign : "center"}}>Price {data.price} ETH</p>
             <button style={{ display : "block" , margin : "auto" }} onClick={()=>dispatch(savingData(data))}>Add To Cart</button>
             {/* <button onClick={abc}>store</button> */}
             <p>{data.id} .</p>
