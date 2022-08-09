@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch} from "react-redux";
-import {savingData} from "../actions/index";
-import { savingAPI , incNum} from "../actions/index";
+import { savingAPI , incNum , savingCartData} from "../redux/actions/index";
+import apiData from "../apiData/apiData.json"
 import "./CSS/product.css"
 
 export default function Product() {
@@ -10,8 +10,8 @@ export default function Product() {
   
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await fetch("https://fakestoreapi.com/products");
-      const data = await res.json();
+      // const res = await fetch("https://fakestoreapi.com/products");
+      const data = apiData;
       setProduct(data);
       dispatch(savingAPI(data));
     };
@@ -35,7 +35,7 @@ export default function Product() {
           <div className="returnMainDiv" key={index} style={{height: "400px", width: "400px" , display : "block" , margin : "auto" , marginTop : "5%"}} >
             <img src={data.image} alt="noImage" style={{ height: "300px", width: "300px" , margin : "auto" , display : "block" , marginTop : "4%"}}/>
             <p style={{textAlign : "center"}}>Price {data.price} ETH</p>
-            <button style={{ display : "block" , margin : "auto" }} onClick={()=>{dispatch(savingData(data)); dispatch(incNum())}}>Add To Cart</button>
+            <button style={{ display : "block" , margin : "auto" }} onClick={()=>{dispatch(savingCartData(data)); dispatch(incNum());}}>Add To Cart</button>
           </div>
         );
       })}
