@@ -12,4 +12,25 @@ export const savingData = (data) => {
     type : "savingData" ,
     data : data
   }
+
+}
+
+export const deleteData = (data) => {
+ 
+  return {
+    type : "deleteData" ,
+    data : data
+  }
+
+}
+
+
+
+export const savingAPI = (data) => {
+ 
+  return {
+    type : "savingAPI" ,
+    data : data
+  }
+  
 }
