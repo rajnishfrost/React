@@ -35,9 +35,17 @@ export const savingAPI = (data) => {
   
 }
 
-export const increaseQty = (data) =>{
+export const increaseQty = (data) => {
   return {
     type : "increaseQty" ,
+    qty : data.qty ,
+    id : data.id
+  }
+}
+
+export const decreaseQty = (data) => {
+  return {
+    type : "decreaseQty" ,
     qty : data.qty ,
     id : data.id
   }

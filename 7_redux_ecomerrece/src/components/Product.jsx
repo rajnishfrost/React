@@ -19,7 +19,6 @@ export default function Product() {
 
   }, );
 
-
   return (
     <div  style={{ height : "100%" , width : "100%" , display : "flex" , flexWrap : "wrap" }}>
       <div className="bgImage" style={{width : "100%" ,height : "600px" , marginTop : "1%"}}>
@@ -35,7 +34,7 @@ export default function Product() {
           <div className="returnMainDiv" key={index} style={{height: "400px", width: "400px" , display : "block" , margin : "auto" , marginTop : "5%"}} >
             <img src={data.image} alt="noImage" style={{ height: "300px", width: "300px" , margin : "auto" , display : "block" , marginTop : "4%"}}/>
             <p style={{textAlign : "center"}}>Price {data.price} ETH</p>
-            <button style={{ display : "block" , margin : "auto" }} onClick={()=>{dispatch(savingCartData(data)); dispatch(incNum());}}>Add To Cart</button>
+            <button id="disableButton" style={{ display : "block" , margin : "auto" }} onClick={()=>{dispatch(savingCartData(data)); dispatch(incNum());}}>Add To Cart</button>
           </div>
         );
       })}

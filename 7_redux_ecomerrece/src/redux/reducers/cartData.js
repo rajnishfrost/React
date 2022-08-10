@@ -12,7 +12,13 @@ const cartData = (state = initialState, action) => {
       return { ...state, rj : [...state.rj]}
 
       case "increaseQty" : 
-      console.log(action.qty , action.id);
+      let index = state.rj.findIndex((e)=>e.id === action.id);
+      state.rj[index].qty =  state.rj[index].qty+1;
+      return { ...state, rj : [...state.rj]}
+
+      case "decreaseQty" : 
+      let i = state.rj.findIndex((e)=>e.id === action.id);
+      state.rj[i].qty =  state.rj[i].qty-1;
       return { ...state, rj : [...state.rj]}
 
     default:

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector , useDispatch} from "react-redux";
-import {decNum, deleteCartData , increaseQty} from "../redux/actions/index";
+import {decNum, deleteCartData , increaseQty ,decreaseQty} from "../redux/actions/index";
 
 export default function Cart() {
     const myState = useSelector((state) => state.cartData);
@@ -18,14 +18,13 @@ export default function Cart() {
                 <h1 style={{marginTop : "5%"}}>{d.title}</h1>
                 <p>{d.description}</p>
                 <p>Category : {d.category}</p>
-                {/* <p>Rating {d.rating.rate}</p> */}
                 <p>Price {d.price} ETH </p>
                 <div style={{display : "flex" , flexDirection : "row"}}>
-                <button  style={{height : "30px" , width : "30px"}}>-</button>
+                <button onClick={()=>dispatch(decreaseQty(d))}  style={{height : "30px" , width : "30px"}}>-</button>
                 <h2 style={{marginTop:"-0.2%" , marginLeft : "1%" , marginRight : "1%"}}>{d.qty}</h2>
                 <button onClick={()=>dispatch(increaseQty(d))} style={{height : "30px" , width : "30px"}}>+</button>
                 </div>
-                <p>Total Cost = {d.price}</p>
+                <p>Total Cost = {d.price*d.qty}</p>
                 <button onClick={()=>{dispatch(deleteCartData(d.id));dispatch(decNum())}}>Delete</button>
                 </div>
               </div>
