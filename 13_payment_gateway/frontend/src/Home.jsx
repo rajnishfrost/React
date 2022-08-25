@@ -36,6 +36,7 @@ function Home() {
     
  }
 
+
   return (
     <div className="App" style={{display : "flex" , justifyContent:"center"}}>
       <div style={{height : "400px" , width : "400px" }}>
