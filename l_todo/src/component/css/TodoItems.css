@@ -1,0 +1,41 @@
+.subDiv3{
+    height: 150px;
+    width: 300px;
+    background-color: white;
+    border-radius: 10px;
+    display: block;
+    margin: auto;
+    margin-top: 2%;
+    overflow: auto;
+}
+.subDiv3 button{
+    margin-left: 75%;
+    margin-top: 1%;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: blueviolet;
+    color: white;
+}
+.subDiv3 textarea{
+    display: block;
+    margin: auto;
+    margin-top: 1%;
+    border: none;
+}
+.image{
+    margin-left: 50%;
+}
+.image img{
+    height: 25px;
+    width: 25px;
+    margin-left: 8%;
+}
+.etc:hover{
+    cursor: pointer;
+}
+.sm{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+
+}

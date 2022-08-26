@@ -1,0 +1,65 @@
+.div1{
+    width: 500px;
+    display: block;
+    margin: auto;
+    margin-top: 5%;
+    /* border: 2px solid red; */
+}
+.heading{
+    text-align: center;
+    color: white;
+}
+.subDiv1{
+display: flex;
+flex-wrap: wrap;
+}
+.subDiv1 input{
+    height: 30px;
+    width: 400px;
+    border-radius: 10px;
+    margin-left: 5%;
+}
+.subDiv1 p{
+    background:blueViolet;
+    border: 2px solid white;
+    color: white;
+    border-radius: 100px;
+    font-size: 30px;
+    width: 35px;
+    margin: auto;
+    text-align: center;
+}
+.subDiv1 p:hover{
+    cursor: pointer;
+}
+.subDiv2{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.subDiv2 button{
+    background-color: white;
+    font-size: large;
+    margin:10px;
+    border-radius: 10px;
+    padding: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.subDiv2 p:hover{
+    cursor: pointer;
+}
+.div2{
+display: flex;
+flex-wrap: wrap;
+}
+.signOutButton{
+    background-color: white;
+    font-size:medium;
+    margin:10px;
+    border-radius: 10px;
+    padding: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: red;
+}

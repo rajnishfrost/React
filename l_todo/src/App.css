@@ -1,0 +1,7 @@
+.mainDiv{
+  background-color: blueviolet;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  /* border: 20px solid rgb(15, 0, 128); */
+}
