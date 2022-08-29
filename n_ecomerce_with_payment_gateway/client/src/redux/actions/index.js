@@ -10,7 +10,7 @@ export const savingCartData = (data) => {
  
   return {
     type : "savingCartData" ,
-    data : {...data , qty : 1}
+    data : {...data , qty : 0}
   }
 
 }

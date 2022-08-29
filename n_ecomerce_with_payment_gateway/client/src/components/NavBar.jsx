@@ -1,22 +1,37 @@
 import { useSelector } from "react-redux";
 import {Link} from "react-router-dom"
-import "./CSS/navBar.css"
+import "./CSS/navBar.css";
+import { useEffect ,useState } from "react";
 import PIC from "../images/shopping-cart-icon-illustration-free-vector.webp"
 
 export default function NavBar() {
-  const myState2 = useSelector((state) => state.changeTheNumber);
+  const [first, setfirst] = useState(0);
+  const myState2 = useSelector((state) => state.cartData);
+  useEffect(() => {
+    setfirst(0);
+    let a = 0 ;
+    a = myState2.rj.map(d=>d.qty);
+    let b = 0;
+    for(let i = 0 ; i < a.length ;i++ ){
+      b = b + a[i];
+    }
+    setfirst(b)
+
+}, [myState2])
+
   
   return (
     <>
-      <div style={{height: "50px",width: "94%",border: "2px solid black",display : "block",margin: "auto",borderRadius: "10px" ,marginTop : "1%"}}>
-        <ul style={{ display: "flex" }}>
-          <Link className="returnLi" style={{ marginLeft: "0%", listStyle: "none" , textDecoration : "none" , color : "black" }} to="/">Home</Link>
-          <Link className="returnLi" style={{ marginLeft: "5%", listStyle: "none" , textDecoration : "none" , color : "black" }} to="/mensClothing">Men's Clothing</Link>
-          <Link className="returnLi" style={{ marginLeft: "5%", listStyle: "none" , textDecoration : "none" , color : "black" }} to="/womensClothing">Women's Clothing</Link>
-          <Link className="returnLi" style={{ marginLeft: "5%", listStyle: "none" , textDecoration : "none" , color : "black" }} to="/jeweleries">Jeweleries</Link>
-          <Link className="returnLi" style={{ marginLeft: "5%", listStyle: "none" , textDecoration : "none" , color : "black" }} to="/electronics">Electronics</Link>
-          <Link to="/cart" style={{marginLeft : "45%" , marginTop : "-0.5%"}}><img src={PIC} alt="noImage" style={{height : "40px" , width : "50px"}}/></Link>
-          <p style={{backgroundColor : "black" , color : "white" , width : "20px" , height : "20px" , borderRadius : "10px" , textAlign : "center" , marginTop : "-1%"}}>{myState2}</p>
+      <div style={{height: "40px",width: "100%" , display : "block",margin: "auto",marginTop : "2%" }}>
+        <ul style={{ display: "flex" , justifyContent : "center"}}>
+          <Link  style={{ marginLeft: "2%", listStyle: "none" , textDecoration : "none" , color : "black" , fontFamily : "revert"}} to="/"><li className="returnLi">Home</li></Link>
+          <Link  style={{ marginLeft: "2%", listStyle: "none" , textDecoration : "none" , color : "black" , fontFamily : "revert"}} to="/mensClothing"><li className="returnLi">Men's Clothing</li></Link>
+          <Link  style={{ marginLeft: "2%", listStyle: "none" , textDecoration : "none" , color : "black" , fontFamily : "revert"}} to="/womensClothing"><li className="returnLi">Women's Clothing</li></Link>
+          <Link  style={{ marginLeft: "2%", listStyle: "none" , textDecoration : "none" , color : "black" , fontFamily : "revert"}} to="/jeweleries"><li className="returnLi">Jeweleries</li></Link>
+          <Link  style={{ marginLeft: "2%", listStyle: "none" , textDecoration : "none" , color : "black" , fontFamily : "revert"}} to="/electronics"><li className="returnLi">Electronics</li></Link>
+
+          <Link to="/cart" style={{ marginTop : "-0.5%" , marginLeft : "1%"}}><img src={PIC} alt="noImage" style={{height : "40px" , width : "50px"}}/></Link>
+          <p style={{backgroundColor : "black" , color : "white" , width : "20px" , height : "20px" , borderRadius : "10px" , textAlign : "center" , marginTop : "-1%"}}>{first}</p>
         </ul>
       </div>
     </>

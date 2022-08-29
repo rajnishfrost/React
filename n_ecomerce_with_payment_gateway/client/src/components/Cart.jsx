@@ -19,6 +19,7 @@ export default function Cart() {
       for(let i=0;i<totalPriceOfEachItem.length;i++){
         total = total + totalPriceOfEachItem[i];
       }
+      total = Math.floor(total);
         await setAmount(total);
     
     }
@@ -87,8 +88,8 @@ export default function Cart() {
             )
           })
         }
-        <h1 style={{textAlign : "center"}}>Total =  ₹{amount}</h1>
-        <button onClick={checkoutHandler} style={{height : "20px" , width : "80px" , display : "block" , margin : "auto"}}>Check Out</button>
+        <h1 style={{textAlign : "center"}}>Total =  ₹ {amount}</h1>
+        <button onClick={checkoutHandler} style={{height : "20px" , width : "80px" , display : "block" , margin : "auto" , border : "none" , backgroundColor : "green" , color : "white" , borderRadius : "10px"}}>Check Out</button>
       </div>
   )
 }

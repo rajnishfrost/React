@@ -5,7 +5,7 @@ import MensClothing from "./components/MensClothing";
 import WomensClothing from "./components/WomensClothing";
 import Jeweleries from "./components/Jeweleries";
 import Electronics from "./components/Electronics";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer"
 import Cart from "./components/Cart";
 import PaymentSuccessful from "./components/PaymentSuccessful"
 
@@ -25,7 +25,7 @@ function App() {
         <Route exact path="/paymentsuccessful" element={<PaymentSuccessful/>} />
       </Routes>
      </Router>
-   <Footer/>
+      <Footer/>
     </div>
   );
 }

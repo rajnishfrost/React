@@ -18,7 +18,9 @@ const cartData = (state = initialState, action) => {
 
       case "decreaseQty" : 
       let i = state.rj.findIndex((e)=>e.id === action.id);
+      if(state.rj[i].qty >= 2){
       state.rj[i].qty =  state.rj[i].qty-1;
+      }
       return { ...state, rj : [...state.rj]}
 
     default:

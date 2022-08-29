@@ -1,4 +1,8 @@
 .returnLi:hover{
-    font-size:larger;
     text-decoration:underline;
+    color:rgb(0, 185, 185);
+}
+.logo{
+    height: 100px;
+    width: 100px;
 }
