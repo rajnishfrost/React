@@ -31,3 +31,6 @@ cursor: pointer;
     background:url("../../images/img/banner/b18.jpg") no-repeat;
     opacity: 0.9;
 }
+.returnMainDiv img:hover{
+cursor:pointer;
+}

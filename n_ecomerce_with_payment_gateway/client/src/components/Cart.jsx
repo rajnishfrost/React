@@ -2,11 +2,14 @@ import {React , useState , useEffect} from 'react';
 import { useSelector , useDispatch} from "react-redux";
 import {decNum, deleteCartData , increaseQty ,decreaseQty} from "../redux/actions/index";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Cart() {
     const myState = useSelector((state) => state);
     const dispatch = useDispatch();
-    const [amount, setAmount] = useState(0)
+    const [amount, setAmount] = useState(0);
+    const navigate = useNavigate();
     
     async function handleCheckout(){
       let qty =  myState.cartData.rj.map(d=>d.qty);
@@ -30,6 +33,7 @@ export default function Cart() {
     }, [myState]);
 
     const checkoutHandler = async() => {
+      try{
       const {data:{key}} =await axios.get("http://localhost:4000/api/getkey")
 
       const {data : {order}} = await axios.post("http://localhost:4000/api/checkout", {amount})
@@ -58,6 +62,10 @@ export default function Cart() {
   };
   const razor = new window.Razorpay(options);
   razor.open(); 
+}
+catch(err){
+ navigate("/servernotres")
+}
   
 }
     

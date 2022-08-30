@@ -7,13 +7,14 @@ import Jeweleries from "./components/Jeweleries";
 import Electronics from "./components/Electronics";
 import Footer from "./components/Footer"
 import Cart from "./components/Cart";
-import PaymentSuccessful from "./components/PaymentSuccessful"
+import PaymentSuccessful from "./components/PaymentSuccessful";
+import SeverNotRes from "./components/SeverNotRes";
+import BuyOne from "./components/BuyOne";
 
 function App() {
   return (
-    
-    <div className="App" >
-    <Router>
+    <div  >
+     <Router>
       <NavBar/>
       <Routes>
         <Route exact path = "/" element={<>  <Product/> </>}/>
@@ -23,9 +24,11 @@ function App() {
         <Route exact path = "/electronics" element={<> <Electronics/> </>}/>
         <Route exact path = "/cart" element={<> <Cart/> </>}/>
         <Route exact path="/paymentsuccessful" element={<PaymentSuccessful/>} />
+        <Route exact path="/servernotres" element={<SeverNotRes/>} />
+        <Route exact path="/buyone" element={<BuyOne/>} />
       </Routes>
+     <Footer/>
      </Router>
-      <Footer/>
     </div>
   );
 }

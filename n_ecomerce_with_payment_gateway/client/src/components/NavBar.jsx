@@ -22,7 +22,7 @@ export default function NavBar() {
   
   return (
     <>
-      <div style={{height: "40px",width: "100%" , display : "block",margin: "auto",marginTop : "2%" }}>
+      <nav className="navmain" >
         <ul style={{ display: "flex" , justifyContent : "center"}}>
           <Link  style={{ marginLeft: "2%", listStyle: "none" , textDecoration : "none" , color : "black" , fontFamily : "revert"}} to="/"><li className="returnLi">Home</li></Link>
           <Link  style={{ marginLeft: "2%", listStyle: "none" , textDecoration : "none" , color : "black" , fontFamily : "revert"}} to="/mensClothing"><li className="returnLi">Men's Clothing</li></Link>
@@ -33,7 +33,7 @@ export default function NavBar() {
           <Link to="/cart" style={{ marginTop : "-0.5%" , marginLeft : "1%"}}><img src={PIC} alt="noImage" style={{height : "40px" , width : "50px"}}/></Link>
           <p style={{backgroundColor : "black" , color : "white" , width : "20px" , height : "20px" , borderRadius : "10px" , textAlign : "center" , marginTop : "-1%"}}>{first}</p>
         </ul>
-      </div>
+      </nav>
     </>
   );
 }

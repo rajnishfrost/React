@@ -1,8 +1,18 @@
-.returnLi:hover{
-    text-decoration:underline;
-    color:rgb(0, 185, 185);
+.returnLi:hover {
+  text-decoration: underline;
+  color: rgb(0, 185, 185);
 }
-.logo{
-    height: 100px;
-    width: 100px;
+.logo {
+  height: 100px;
+  width: 100px;
+}
+.navmain {
+  height: 40px;
+  width: 100%;
+  top : 0;
+  padding: 10px;
+  position: -webkit-sticky;
+  position: sticky;
+  background-color: white;
+  z-index: 1;
 }

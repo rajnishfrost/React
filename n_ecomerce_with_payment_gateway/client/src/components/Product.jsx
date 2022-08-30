@@ -2,11 +2,19 @@ import { useEffect, useState } from "react";
 import { useDispatch} from "react-redux";
 import { savingAPI , increaseQty , savingCartData} from "../redux/actions/index";
 import apiData from "../apiData/apiData.json"
-import "./CSS/product.css"
+import "./CSS/product.css";
+import Modal from "./Modal";
 
 export default function Product() {
   const [product, setProduct] = useState([]);
   const dispatch = useDispatch();
+  const [isOpen, setIsopen] = useState(false);
+  const [temp , setTemp] = useState([]);
+
+  const model = {
+    position : "absolute" ,
+    zIndex : 1,
+  }
   
   useEffect(() => {
     const fetchProducts = async () => {
@@ -19,8 +27,12 @@ export default function Product() {
 
   }, );
 
+
   return (
     <div  style={{ height : "100%" , width : "100%" , display : "flex" , flexWrap : "wrap" }}>
+      <div style={model}>
+      <Modal open={isOpen} onClose ={() => setIsopen(false)} data ={temp}></Modal>
+      </div>
       <div className="bgImage" style={{width : "100%" ,height : "900px" }}>
         <h1 style={{fontSize : "50px" , color : "white" , marginLeft : "10%" , marginTop : "10%"}}>SUMMER SALE</h1>
         <p style={{color : "grey" , marginLeft : "10% " }}>DON'T COMPROMISE ON STYLE ! FET FLAT 30% OFF</p>
@@ -39,12 +51,14 @@ export default function Product() {
         product && product.filter(d=>d.category === "women's clothing"  || d.category === "men's clothing").map((data , index) => {
           return (
             <div className="returnMainDiv" key={index} style={{height: "400px", width: "400px" , display : "block" , margin : "auto" , marginTop : "1%" , border : "2px solid grey" , borderRadius : "100px"}} >
-            <img src={data.image} alt="noImage" style={{ height: "300px", width: "300px" , margin : "auto" , display : "block" , marginTop : "4%"}}/>
-            <p style={{textAlign : "center"}}>Price ₹{data.price} </p>
-            <button id="addtocart" style={{ display : "block" , margin : "auto" ,borderRadius : "10px" , border : "none" , backgroundColor : "rgb(0, 185, 185)" , height : "25px"}} onClick={()=>{dispatch(savingCartData(data)); dispatch(increaseQty(data));}}  >Add To Cart</button>
+            <img onClick={() => {setIsopen(true) ; setTemp(data)}} src={data.image} alt="noImage" style={{ height: "250px", width: "250px" , margin : "auto" , display : "block" , marginTop : "4%" ,}}/>
+            <p style={{textAlign : "center"}}>{data.title}</p>
+            <p style={{textAlign : "center" , fontWeight : "bold"}}>Price ₹{data.price} </p>
+            <button id="addtocart" style={{fontWeight : "bold" , display : "block" , margin : "auto" ,borderRadius : "10px" , border : "none" , backgroundColor : "rgb(0, 185, 185)" , height : "25px"}} onClick={()=>{dispatch(savingCartData(data)); dispatch(increaseQty(data));}}  >Add To Cart</button>
           </div>
         );
-      })}
+      })
+      }
       </div>
       <div className="banner" style={{width : "100%" ,height : "100%" , marginTop : "1%"}}>
         <h3 style={{textAlign : "center" , color : "white"}}>Repair Services</h3>
@@ -59,9 +73,9 @@ export default function Product() {
         product && product.filter(d=>d.category === "jewelery" || d.category === "electronics").map((data , index) => {
           return (
             <div className="returnMainDiv" key={index} style={{height: "400px", width: "400px" , display : "block" , margin : "auto" , marginTop : "1%" , border : "2px solid grey" , borderRadius : "100px"}} >
-            <img src={data.image} alt="noImage" style={{ height: "300px", width: "300px" , margin : "auto" , display : "block" , marginTop : "4%"}}/>
-            <p style={{textAlign : "center"}}>Price ₹{data.price} </p>
-            <button id="addtocart" style={{ display : "block" , margin : "auto" ,borderRadius : "10px" , border : "none" , backgroundColor : "rgb(0, 185, 185)" , height : "25px"}} onClick={()=>{dispatch(savingCartData(data)); dispatch(increaseQty(data));}} disabled={data.status} >Add To Cart</button>
+            <img onClick={() => {setIsopen(true) ; setTemp(data)}} src={data.image} alt="noImage" style={{ height: "250px", width: "250px" , margin : "auto" , display : "block" , marginTop : "4%" ,}}/>
+            <p style={{textAlign : "center" , fontWeight : "bold"}}>Price ₹{data.price} </p>
+            <button id="addtocart" style={{fontWeight : "bold" , display : "block" , margin : "auto" ,borderRadius : "10px" , border : "none" , backgroundColor : "rgb(0, 185, 185)" , height : "25px"}} onClick={()=>{dispatch(savingCartData(data)); dispatch(increaseQty(data));}}  >Add To Cart</button>
           </div>
         );
       })}

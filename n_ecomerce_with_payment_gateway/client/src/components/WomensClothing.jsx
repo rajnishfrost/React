@@ -2,11 +2,20 @@ import React from 'react';
 import { useSelector , useDispatch} from "react-redux";
 import {savingCartData , increaseQty} from "../redux/actions/index";
 import { useEffect, useState } from "react";
+import Modal from "./Modal";
+
 
 export default function WomensClothing() {
   const myState = useSelector((state) => state.savingAPI);
   const [product, setProduc] = useState([]);
   const dispatch = useDispatch();
+  const [isOpen, setIsopen] = useState(false);
+  const [temp , setTemp] = useState([]);
+
+  const model = {
+    position : "absolute" ,
+    zIndex : 1,
+  }
 
   useEffect(() => {
     setProduc(myState.dj[0]);
@@ -20,14 +29,18 @@ export default function WomensClothing() {
   }
 
   return (
-    <div  style={{ height : "100%" , width : "100%" , display : "flex" , flexWrap : "wrap" }}>
+    <div  style={{ height : "100%" , width : "100%" , display : "flex" , flexWrap : "wrap" , marginBottom : "5%"}}>
+    <div style={model}>
+    <Modal open={isOpen} onClose ={() => setIsopen(false)} data ={temp}></Modal>
+    </div>
     {
     product && product.filter(filtering).map((data , index) => {
       return (
-        <div key={index} style={{height: "350px", width: "350px" , display : "block" , margin : "auto" , marginTop : "1%" ,border : "2px solid grey" , borderRadius : "100px"}} >
-          <img src={data.image} alt="noImage" style={{ height: "250px", width: "250px" , margin : "auto" , display : "block" , marginTop : "4%"}}/>
-          <p style={{textAlign : "center"}}>Price {data.price} ETH</p>
-          <button style={{ display : "block" , margin : "auto" , backgroundColor : "rgb(0, 185, 185)" , height : "25px" , border : "none" , borderRadius : "10px"}} onClick={()=>{dispatch(savingCartData(data)); dispatch(increaseQty(data));}}>Add To Cart</button>
+        <div className="returnMainDiv" key={index} style={{height: "400px", width: "400px" , display : "block" , margin : "auto" , marginTop : "1%" , border : "2px solid grey" , borderRadius : "100px"}} >
+          <img onClick={() => {setIsopen(true) ; setTemp(data)}} src={data.image} alt="noImage" style={{ height: "250px", width: "250px" , margin : "auto" , display : "block" , marginTop : "4%" ,}}/>
+          <p style={{textAlign : "center"}}>{data.title}</p>
+          <p style={{textAlign : "center" , fontWeight : "bold"}}>Price ₹{data.price} </p>
+          <button id="addtocart" style={{fontWeight : "bold" , display : "block" , margin : "auto" ,borderRadius : "10px" , border : "none" , backgroundColor : "rgb(0, 185, 185)" , height : "25px"}} onClick={()=>{dispatch(savingCartData(data)); dispatch(increaseQty(data));}}  >Add To Cart</button>
         </div>
       );
     })}
