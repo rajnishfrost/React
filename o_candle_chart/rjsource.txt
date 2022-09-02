@@ -1,0 +1,1 @@
+npm i d3-dsv d3-format d3-scale d3-time-format prop-types react-stockcharts shortid

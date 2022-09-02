@@ -3,6 +3,7 @@ import { useSelector , useDispatch} from "react-redux";
 import {decNum, deleteCartData , increaseQty ,decreaseQty} from "../redux/actions/index";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import "./CSS/cart.css"
 
 
 export default function Cart() {
@@ -72,9 +73,10 @@ catch(err){
   
     
     return (
-        <div style={{height: "100%",width: "94%"}}>
+        <div style={{height: "100%",width: "94%" , marginBottom : "31.5%"}}>
         {
           myState.cartData.rj.length === 0 ? <h1 style={{textAlign : "center"}}>No Items In Cart</h1>:
+          <div>{
             myState.cartData.rj.map((d,i)=>{
                 return(
               <div key={i} style={{marginLeft : "3%" , marginTop : "1%" , display : "flex"}}>
@@ -85,19 +87,20 @@ catch(err){
                 <p>Category : {d.category}</p>
                 <p>Price ₹{d.price}  </p>
                 <div style={{display : "flex" , flexDirection : "row"}}>
-                <button onClick={()=>dispatch(decreaseQty(d))}  style={{height : "30px" , width : "30px"}}>-</button>
-                <h2 style={{marginTop:"-0.2%" , marginLeft : "1%" , marginRight : "1%"}}>{d.qty}</h2>
-                <button onClick={()=>dispatch(increaseQty(d))} style={{height : "30px" , width : "30px"}}>+</button>
+                <h2 className='hover' onClick={()=>dispatch(decreaseQty(d))} style={{ width : "28px" , textAlign : "center" , borderRadius : "50px" , backgroundColor : "rgb(0,185,185)" , color : "white"}}>-</h2>
+                <h2 style={ {marginLeft : "1%" , marginRight : "1%"}}>{d.qty}</h2>
+                <h2 className='hover' onClick={()=>dispatch(increaseQty(d))} style={{ width : "28px" , textAlign : "center" , borderRadius : "50px" , backgroundColor : "rgb(0,185,185)" , color : "white"}}>+</h2>
                 </div>
-                <p>Total Item Cost = ₹{d.price*d.qty}</p>
-                <button onClick={()=>{dispatch(deleteCartData(d.id));dispatch(decNum())}}>Delete</button>
+                <h2> ₹{d.price*d.qty}</h2>
+                <button className='hover' style={{backgroundColor : "red" , color : "white" , border : "none" , fontSize : "15px" , padding  : "5px" , borderRadius : "10px"}} onClick={()=>{dispatch(deleteCartData(d.id));dispatch(decNum())}}>Delete</button>
                 </div>
               </div>
             )
-          })
+          })}
+          <h1 style={{textAlign : "center"}}>Total =  ₹{amount}</h1>
+        <button className='hover' onClick={checkoutHandler} style={{ display : "block" , margin : "auto" , border : "none" , backgroundColor : "green" , color : "white" , borderRadius : "10px" , fontSize : "15px" , padding  : "5px" }}>Check Out</button>
+        </div>
         }
-        <h1 style={{textAlign : "center"}}>Total =  ₹ {amount}</h1>
-        <button onClick={checkoutHandler} style={{height : "20px" , width : "80px" , display : "block" , margin : "auto" , border : "none" , backgroundColor : "green" , color : "white" , borderRadius : "10px"}}>Check Out</button>
-      </div>
+         </div>
   )
 }

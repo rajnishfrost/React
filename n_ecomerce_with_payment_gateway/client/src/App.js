@@ -10,6 +10,10 @@ import Cart from "./components/Cart";
 import PaymentSuccessful from "./components/PaymentSuccessful";
 import SeverNotRes from "./components/SeverNotRes";
 import BuyOne from "./components/BuyOne";
+import Skin from "./components/Skin";
+import Hdecoration from "./components/Hdecoration";
+import Laptop from "./components/Laptop";
+import Smartphones from "./components/Smartphones";
 
 function App() {
   return (
@@ -26,6 +30,10 @@ function App() {
         <Route exact path="/paymentsuccessful" element={<PaymentSuccessful/>} />
         <Route exact path="/servernotres" element={<SeverNotRes/>} />
         <Route exact path="/buyone" element={<BuyOne/>} />
+        <Route exact path="/skin" element={<Skin/>} />
+        <Route exact path="/hdecoration" element={<Hdecoration/>} />
+        <Route exact path="/laptop" element={<Laptop/>} />
+        <Route exact path="/smartphones" element={<Smartphones/>} />
       </Routes>
      <Footer/>
      </Router>

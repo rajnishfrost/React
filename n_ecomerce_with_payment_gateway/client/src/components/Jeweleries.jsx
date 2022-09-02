@@ -29,7 +29,7 @@ export default function Jeweleries() {
   }
 
   return (
-    <div  style={{ height : "100%" , width : "100%" , display : "flex" , flexWrap : "wrap", marginBottom : "23.5%"}}>
+    <div  style={{ height : "100%" , width : "100%" , display : "flex" , flexWrap : "wrap", marginBottom : "11%"}}>
     <div style={model}>
     <Modal open={isOpen} onClose ={() => setIsopen(false)} data ={temp}></Modal>
     </div>
