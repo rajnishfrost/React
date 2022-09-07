@@ -1,1 +1,42 @@
-npm i d3-dsv d3-format d3-scale d3-time-format prop-types react-stockcharts shortid
+the chart is based on apex chart library of react .
+
+1. Step 
+install apex chart library by npm i react-apexcharts
+the styling of the apex chart is given by in the form of object in attributes called option and height width give as below
+
+ex - <ReactApexChart options={options}  type="candlestick" height={"600px"} width={"1650px"}/>
+
+var options = {
+    chart: {
+      type: "candlestick",
+      height: 350,
+    },
+    xaxis: {
+      type: "datetime",
+    },
+    yaxis: {
+      tooltip: {
+        enabled: true,
+      },
+    },
+  };
+  
+  2. Step
+  the data format support in apex chart is as follow . its also support var series array object of var data array of object 
+  ex - <ReactApexChart series={series} options={options}  type="candlestick" height={"600px"} width={"1650px"}/>
+  var series = [{ var data : [ x: time, y: [close, high, low, open] } , [ x: time, y: [close, high, low, open] }]]}]
+
+  3. step 
+  now fetch api and convert all the data to format of that apex support as explained in line no 27 .
+  for live data you should call use effect again n again so put dependency array in which you are fetching the data 
+ ex -
+    const [stock, setStock] = useState([]);
+    useEffect(() => {
+    axios({
+      method: "get",
+      url: `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${time}&limit=100`,
+    }).then((res) => {
+      setStock(res.data);
+    });
+  }, [stock]);
+as you can see i m fetching data in stock show i make stock as dependecy array so when the data will change in stock the use effect will called .

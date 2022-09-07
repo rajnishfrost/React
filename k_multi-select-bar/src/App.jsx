@@ -76,7 +76,8 @@ function App() {
         />
         <div className="App" onClick={settingFalse}>
           <div style={{backgroundColor : "lightGrey" , width: "30%" ,  margin : "auto", opacity : "0.9" , overflow : "hidden" }}>
-          {data.filter(filttering).map((d, i) => {
+          {
+          data.filter(filttering).map((d, i) => {
             return (
               <div key={i} >
                 <p style={{ textAlign: "center"}}>{d.label}</p>
