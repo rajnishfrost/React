@@ -1,0 +1,3 @@
+if getting module error then
+1. npm install --save react-apexcharts apexcharts
+2. npm i web-vitals

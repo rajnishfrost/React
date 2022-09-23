@@ -40,3 +40,7 @@ var options = {
     });
   }, [stock]);
 as you can see i m fetching data in stock show i make stock as dependecy array so when the data will change in stock the use effect will called .
+
+
+
+
