@@ -11,7 +11,7 @@ function CandleStick() {
   const [inputData, setInputData] = useState("");
   const [time, setTime] = useState("5m");
   const [VHL, setVHL] = useState([]);
-
+  const [count , setCount] = useState(1);
   const data = [];
   const series = [{ data }];
 
@@ -74,6 +74,19 @@ function CandleStick() {
     // },
     
   };
+  // setInterval(() => {
+  //   axios({
+  //     method: "get",
+  //     url: `https://api.wazirx.com/sapi/v1/klines?symbol=${symbol}&limit=150&interval=${time}`,
+  //   }).then((res) => {
+  //     setStock(res.data);
+  //   });
+  // }, 1000*1);
+
+  setInterval(() => {
+    setCount(0);
+    console.log(count);
+  }, 1000*10);
 
   useEffect(() => {
     axios({
@@ -82,7 +95,7 @@ function CandleStick() {
     }).then((res) => {
       setStock(res.data);
     });
-  }, [time, symbol, stock]);
+  }, [time, symbol , count]);
 
   useEffect(() => {
     axios({
@@ -135,6 +148,7 @@ function CandleStick() {
       return d;
     }
   }
+
 
   return (
     <div style={{ display: "flex" }}>
