@@ -50,3 +50,10 @@ export const decreaseQty = (data) => {
     id : data.id
   }
 }
+
+export const userFirstName = (data) => {
+  return {
+    type : "userFirstName" ,
+    data : data
+  }
+}

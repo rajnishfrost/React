@@ -1,4 +1,4 @@
-const initialState = { rj: [] };
+const initialState = { rj: [] , user:""};
 
 const cartData = (state = initialState, action) => {
   switch (action.type) {
@@ -22,6 +22,10 @@ const cartData = (state = initialState, action) => {
       state.rj[i].qty =  state.rj[i].qty-1;
       }
       return { ...state, rj : [...state.rj]}
+
+      case "userFirstName" :
+        console.log(action.data);
+        return{...state , user : action.data}
 
     default:
       return state;

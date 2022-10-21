@@ -14,6 +14,9 @@ import Skin from "./components/Skin";
 import Hdecoration from "./components/Hdecoration";
 import Laptop from "./components/Laptop";
 import Smartphones from "./components/Smartphones";
+import SignUp from "./components/SignUp";
+import Registered from "./components/Registered";
+import LogIn from "./components/LogIn";
 
 function App() {
   return (
@@ -34,6 +37,9 @@ function App() {
         <Route exact path="/hdecoration" element={<Hdecoration/>} />
         <Route exact path="/laptop" element={<Laptop/>} />
         <Route exact path="/smartphones" element={<Smartphones/>} />
+        <Route exact path="/signUp" element={<SignUp/>} />
+        <Route exact path="/registered" element={<Registered/>} />
+        <Route exact path="/logIn" element={<LogIn/>} />
       </Routes>
      <Footer/>
      </Router>
