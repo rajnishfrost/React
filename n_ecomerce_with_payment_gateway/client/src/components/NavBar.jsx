@@ -21,11 +21,23 @@ export default function NavBar() {
   }, [myState2])
 
 
+  
   return (
     <>
       <nav className="navmain" >
         <ul style={{ display: "flex", justifyContent: "center" }}>
-          <Link style={{ marginLeft: "2%", listStyle: "none", textDecoration: "none", color: "black", fontFamily: "revert" }} to="/"><li className="returnLi">{myState2.user}</li></Link>
+          {myState2.user.firstName !== "" ?
+          <div class="dropdown">
+            <button class="dropbtn">{myState2.user.firstName}</button>
+            <div class="dropdown-content">
+              <a href="#">Profile</a>
+              <Link to="/order">Orders</Link>
+              <a href="/">Sign Out</a>
+            </div>
+          </div>
+          : 
+          <Link style={{ marginLeft: "2%", listStyle: "none", textDecoration: "none", color: "black", fontFamily: "revert" }} to="/logIn"><li className="returnLi">Log In</li></Link>
+}
           <Link style={{ marginLeft: "2%", listStyle: "none", textDecoration: "none", color: "black", fontFamily: "revert" }} to="/"><li className="returnLi">Home</li></Link>
           <Link style={{ marginLeft: "2%", listStyle: "none", textDecoration: "none", color: "black", fontFamily: "revert" }} to="/mensClothing"><li className="returnLi">Men's Clothing</li></Link>
           <Link style={{ marginLeft: "2%", listStyle: "none", textDecoration: "none", color: "black", fontFamily: "revert" }} to="/womensClothing"><li className="returnLi">Women's Clothing</li></Link>

@@ -24,11 +24,12 @@ export default function Cart() {
         total = total + totalPriceOfEachItem[i];
       }
       total = Math.floor(total);
-        await setAmount(total);
-    
+      await setAmount(total);
+      
     }
     
     useEffect(() => {
+      axios({url : "http://localhost:4000/cartData" , method : "POST" , data : {orderDetails : myState.cartData.rj , email : myState.cartData.user.email}});
       handleCheckout();
       // eslint-disable-next-line
     }, [myState]);
@@ -59,7 +60,8 @@ export default function Cart() {
       },
       theme: {
           color: "#121212"
-      }
+      },
+      msg : "hello peter"
   };
   const razor = new window.Razorpay(options);
   razor.open(); 
@@ -69,6 +71,7 @@ catch(err){
 }
   
 }
+
     
   
     

@@ -17,7 +17,7 @@ export default function LogIn() {
     }
 
     function handlingSubmitButton(){
-        axios({url : "http://localhost:4000/data/logIn" , method :"POST" , data : input}).then(d=>{if(d.data.found === true){navigate("/");dispatch(userFirstName(d.data.firstName))}else{alert("Email or Password Wrong")}});
+        axios({url : "http://localhost:4000/data/logIn" , method :"POST" , data : input}).then(d=>{if(d.data.found === true){navigate("/");dispatch(userFirstName({firstName : d.data.firstName.firstName , email : d.data.firstName.email}))}else{alert("Email or Password Wrong")}});
     }
 
 
@@ -29,7 +29,6 @@ export default function LogIn() {
                     <Form.Label>Email </Form.Label>
                     <Form.Control onChange={handlingInputs} name = "email" type="email" placeholder="Enter email" />
                 </Form.Group>
-
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control onChange={handlingInputs} name = "password" type="password" placeholder="Password" />
@@ -37,6 +36,7 @@ export default function LogIn() {
                 <Button style={{display : "block" , margin : "auto"}} variant="success" onClick={handlingSubmitButton}>
                     Log In
                 </Button>
+                <a href="/signUp">Not Registered Yet ?</a>
             </Form>
         </div>
   )

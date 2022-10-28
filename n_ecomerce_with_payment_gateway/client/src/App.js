@@ -17,6 +17,7 @@ import Smartphones from "./components/Smartphones";
 import SignUp from "./components/SignUp";
 import Registered from "./components/Registered";
 import LogIn from "./components/LogIn";
+import Ordered from "./components/Ordered";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route exact path="/signUp" element={<SignUp/>} />
         <Route exact path="/registered" element={<Registered/>} />
         <Route exact path="/logIn" element={<LogIn/>} />
+        <Route exact path="/order" element={<Ordered/>} />
       </Routes>
      <Footer/>
      </Router>

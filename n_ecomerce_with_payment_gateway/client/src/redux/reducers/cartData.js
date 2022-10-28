@@ -1,4 +1,4 @@
-const initialState = { rj: [] , user:""};
+const initialState = { rj: [] , user:{firstName : "" , email : ""}};
 
 const cartData = (state = initialState, action) => {
   switch (action.type) {

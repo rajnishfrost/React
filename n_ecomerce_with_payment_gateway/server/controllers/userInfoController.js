@@ -21,7 +21,7 @@ export const logIn = async(req , res) => {
     let user = await userInfoSchema.findOne({email : req.body.email});
     if(user){
        if(user.password === req.body.password){
-        res.send({found : true , message : "email pass match" , firstName : user.firstName});
+        res.send({found : true , message : "email pass match" , firstName : user});
        }
        else{
         res.send({found : false , message : "password not match"});

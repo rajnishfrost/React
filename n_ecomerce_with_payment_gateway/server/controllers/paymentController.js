@@ -1,5 +1,5 @@
 import { instance } from "../server.js";
-import crypto from "crypto"
+import crypto from "crypto";
 
 export const checkout  = async (req , res)=> {
     const options = {
@@ -24,7 +24,8 @@ export const paymentVerification = async (req , res) => {
                                     .digest('hex');
       const match = expectedSignature === razorpay_signature ;
       if(match){
-        res.redirect(`http://localhost:3000/paymentsuccessful?reference=${razorpay_payment_id}`)
+       
+        res.redirect(`http://localhost:3000/paymentsuccessful?reference=${razorpay_payment_id}`);
       }
       
   }
