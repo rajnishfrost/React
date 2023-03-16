@@ -13,7 +13,7 @@ const other ={
 }
 
 function App() {
-  const [isOpen, setIsopen] = useState(false)
+  const [isOpen, setIsopen] = useState(false);
 
   return (
     <>
